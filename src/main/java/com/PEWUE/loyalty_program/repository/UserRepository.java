@@ -4,39 +4,39 @@ import com.PEWUE.loyalty_program.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
 public class UserRepository {
-    private final Map<Long, User> storage = new HashMap<>();
+    private final List<User> storage = new ArrayList<>();
     private final AtomicLong idCounter = new AtomicLong(0);
 
     public User save(User user) {
         if (user.getId() == null) {
             user.setId(idCounter.incrementAndGet());
         }
-        storage.put(user.getId(), user);
+        storage.add(user);
         return user;
     }
 
     public Optional<User> findById(Long id) {
-        return Optional.ofNullable(storage.get(id));
+        return storage.stream()
+                .filter(user -> user.getId().equals(id))
+                .findFirst();
     }
 
     public List<User> findAll() {
-        return new ArrayList<>(storage.values());
+        return new ArrayList<>(storage);
     }
 
     public void deleteById(Long id) {
-        storage.remove(id);
+        storage.removeIf(user -> user.getId().equals(id));
     }
 
     public Optional<User> findByEmail(String email) {
-        return storage.values().stream()
+        return storage.stream()
                 .filter(user -> user.getEmail().equalsIgnoreCase(email))
                 .findFirst();
     }
