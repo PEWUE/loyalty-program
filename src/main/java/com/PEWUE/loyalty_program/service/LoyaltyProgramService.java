@@ -1,7 +1,6 @@
 package com.PEWUE.loyalty_program.service;
 
 import com.PEWUE.loyalty_program.dto.LoyaltyProgramCreateDTO;
-import com.PEWUE.loyalty_program.dto.LoyaltyProgramDTO;
 import com.PEWUE.loyalty_program.dto.LoyaltyProgramUpdateDTO;
 import com.PEWUE.loyalty_program.exception.LoyaltyProgramCannotBeDeletedException;
 import com.PEWUE.loyalty_program.exception.ProgramAlreadyExistsException;
