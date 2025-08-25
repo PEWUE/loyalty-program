@@ -11,7 +11,8 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MembershipRegistrationDTO {
-    private Long userId;
-    private Long loyaltyProgramId;
+public class UserUpdateDTO {
+    private String firstName;
+    private String lastName;
+    private String email;
 }

@@ -16,10 +16,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PointsTransaction {
     private Long id;
-    private Membership membership;
     private TransactionType transactionType;
     private Long points;
     private String description;
     private LocalDateTime transactionDate;
     private Long balanceAfterTransaction;
+    private Membership membership;
 }

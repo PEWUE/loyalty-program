@@ -1,7 +1,5 @@
 package com.PEWUE.loyalty_program.dto;
 
-import com.PEWUE.loyalty_program.model.LoyaltyProgram;
-import com.PEWUE.loyalty_program.model.Period;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,5 +19,5 @@ public class RewardCreateDTO {
     private Long pointCost;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private Long loyaltyProgramId;
+    private LoyaltyProgramDTO loyaltyProgram;
 }

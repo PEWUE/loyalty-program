@@ -1,7 +1,5 @@
 package com.PEWUE.loyalty_program.dto;
 
-import com.PEWUE.loyalty_program.model.LoyaltyProgram;
-import com.PEWUE.loyalty_program.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,9 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 public class MembershipDTO {
     private Long id;
-    private User user;
-    private LoyaltyProgram loyaltyProgram;
+    private UserDTO userDTO;
+    private LoyaltyProgramDTO loyaltyProgramDTO;
     private LocalDateTime joinDate;
     private Long pointsBalance;
-    private List<Long> transactionIds;
+    private List<PointsTransactionDTO> transactionDTOS;
 }

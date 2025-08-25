@@ -15,10 +15,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PointsTransactionDTO {
     private Long id;
-    private Long membershipId;
     private String transactionType;
     private Long points;
     private String description;
     private LocalDateTime transactionDate;
     private Long balanceAfterTransaction;
+    private MembershipDTO membershipDTO;
 }

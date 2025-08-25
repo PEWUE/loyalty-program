@@ -21,5 +21,5 @@ public class CampaignCreateDTO {
     private Double multiplier;
     private Long extraPoints;
     private String eventType;
-    private Long loyaltyProgramId;
+    private LoyaltyProgramDTO loyaltyProgram;
 }

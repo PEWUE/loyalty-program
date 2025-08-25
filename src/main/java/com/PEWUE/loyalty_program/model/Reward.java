@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @Builder
@@ -21,5 +19,4 @@ public class Reward {
     private Period period;
     private boolean active;
     private LoyaltyProgram loyaltyProgram;
-    private List<PointsTransaction> transactions;
 }

@@ -21,5 +21,5 @@ public class RewardDTO {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private boolean active;
-    private Long loyaltyProgramId;
+    private LoyaltyProgramDTO loyaltyProgram;
 }

@@ -19,5 +19,4 @@ public class EarningRuleCreateDTO {
     private Long points;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private Long loyaltyProgramId;
 }

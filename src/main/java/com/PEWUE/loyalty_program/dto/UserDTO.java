@@ -20,5 +20,5 @@ public class UserDTO {
     private String lastName;
     private String email;
     private LocalDateTime registrationDate;
-    private List<Long> membershipIds;
+    private List<MembershipDTO> memberships;
 }

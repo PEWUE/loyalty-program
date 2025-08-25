@@ -21,5 +21,5 @@ public class EarningRuleDTO {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private boolean active;
-    private Long loyaltyProgramId;
+    private LoyaltyProgramDTO loyaltyProgram;
 }
