@@ -22,4 +22,14 @@ public class User {
     private LocalDateTime registrationDate;
     private List<Membership> memberships;
     private List<PointsTransaction> pointsTransactions;
+
+    public User update(User newData) {
+        this.firstName = newData.getFirstName();
+        this.lastName = newData.getLastName();
+        this.email = newData.getEmail();
+        this.registrationDate = newData.getRegistrationDate();
+        this.memberships = newData.getMemberships();
+        this.pointsTransactions = newData.getPointsTransactions();
+        return this;
+    }
 }

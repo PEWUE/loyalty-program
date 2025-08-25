@@ -4,7 +4,7 @@ import com.PEWUE.loyalty_program.dto.LoyaltyProgramCreateDTO;
 import com.PEWUE.loyalty_program.dto.LoyaltyProgramDTO;
 import com.PEWUE.loyalty_program.dto.LoyaltyProgramUpdateDTO;
 import com.PEWUE.loyalty_program.exception.LoyaltyProgramCannotBeDeletedException;
-import com.PEWUE.loyalty_program.exception.ProgramAlreadyExists;
+import com.PEWUE.loyalty_program.exception.ProgramAlreadyExistsException;
 import com.PEWUE.loyalty_program.exception.ProgramNotFoundException;
 import com.PEWUE.loyalty_program.mapper.LoyaltyProgramMapper;
 import com.PEWUE.loyalty_program.model.LoyaltyProgram;
@@ -38,7 +38,7 @@ public class LoyaltyProgramService {
             throw new IllegalArgumentException("Start date must be before end date");
         }
         if (loyaltyProgramRepository.findByName(dto.getName()).isPresent()) {
-            throw new ProgramAlreadyExists("Program with name: " + dto.getName() + " already exists");
+            throw new ProgramAlreadyExistsException("Program with name: " + dto.getName() + " already exists");
         }
 
         LoyaltyProgram loyaltyProgram = loyaltyProgramMapper.toEntity(dto, context);

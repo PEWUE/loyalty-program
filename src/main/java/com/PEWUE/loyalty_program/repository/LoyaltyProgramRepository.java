@@ -1,6 +1,7 @@
 package com.PEWUE.loyalty_program.repository;
 
 import com.PEWUE.loyalty_program.model.LoyaltyProgram;
+import com.PEWUE.loyalty_program.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -39,5 +40,9 @@ public class LoyaltyProgramRepository {
         return storage.stream()
                 .filter(program -> program.getName().equalsIgnoreCase(name))
                 .findFirst();
+    }
+
+    public LoyaltyProgram updateProgram(LoyaltyProgram user, LoyaltyProgram updatedProgram) {
+        return user.update(updatedProgram);
     }
 }

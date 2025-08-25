@@ -1,7 +1,9 @@
 package com.PEWUE.loyalty_program.exception;
 
-public class ProgramNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class ProgramNotFoundException extends ApplicationException {
     public ProgramNotFoundException(String message) {
-        super(message);
+        super(message, HttpStatus.NOT_FOUND);
     }
 }

@@ -40,4 +40,8 @@ public class UserRepository {
                 .filter(user -> user.getEmail().equalsIgnoreCase(email))
                 .findFirst();
     }
+
+    public User updateUser(User user, User updatedUser) {
+        return user.update(updatedUser);
+    }
 }

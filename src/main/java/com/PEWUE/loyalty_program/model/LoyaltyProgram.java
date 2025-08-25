@@ -22,4 +22,15 @@ public class LoyaltyProgram {
     private List<EarningRule> earningRules;
     private List<Reward> rewards;
     private List<Campaign> campaigns;
+
+    public LoyaltyProgram update(LoyaltyProgram newData) {
+        this.name = newData.getName();
+        this.description = newData.getDescription();
+        this.period = newData.getPeriod();
+        this.memberships = newData.getMemberships();
+        this.earningRules = newData.getEarningRules();
+        this.rewards = newData.getRewards();
+        this.campaigns = newData.getCampaigns();
+        return this;
+    }
 }
