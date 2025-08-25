@@ -1,6 +1,5 @@
 package com.PEWUE.loyalty_program.service;
 
-import com.PEWUE.loyalty_program.dto.UserDTO;
 import com.PEWUE.loyalty_program.dto.UserRegistrationDTO;
 import com.PEWUE.loyalty_program.dto.UserUpdateDTO;
 import com.PEWUE.loyalty_program.exception.UserAlreadyExistsException;
@@ -22,13 +21,11 @@ public class UserService {
     private final UserMapper userMapper;
     private final CycleAvoidingMappingContext context;
 
-    public List<UserDTO> getAllUsers() {
-        return userRepository.findAll().stream()
-                .map(user -> userMapper.toDto(user, context))
-                .toList();
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
-    public UserDTO registerUser(UserRegistrationDTO userRegistrationDTO) {
+    public User registerUser(UserRegistrationDTO userRegistrationDTO) {
         if (userRegistrationDTO.getFirstName() == null ||
                 userRegistrationDTO.getLastName() == null ||
                 userRegistrationDTO.getEmail() == null) {
@@ -39,17 +36,15 @@ public class UserService {
         }
         User user = userMapper.toEntity(userRegistrationDTO, context);
         user.setRegistrationDate(LocalDateTime.now());
-        User savedUser = userRepository.save(user);
-        return userMapper.toDto(savedUser, context);
+        return userRepository.save(user);
     }
 
-    public UserDTO getUserById(Long id) {
-        User user = userRepository.findById(id)
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User with id: " + id + " not found"));
-        return userMapper.toDto(user, context);
     }
 
-    public UserDTO updateUser(Long id, UserUpdateDTO userUpdateDTO) {
+    public User updateUser(Long id, UserUpdateDTO userUpdateDTO) {
         if (userUpdateDTO.getFirstName() == null ||
                 userUpdateDTO.getLastName() == null ||
                 userUpdateDTO.getEmail() == null) {
@@ -67,8 +62,7 @@ public class UserService {
         existingUser.setFirstName(userUpdateDTO.getFirstName());
         existingUser.setLastName(userUpdateDTO.getLastName());
 
-        User updatedUser = userRepository.save(existingUser);
-        return userMapper.toDto(updatedUser, context);
+        return userRepository.save(existingUser);
     }
 
     public void deleteUser(Long id) {

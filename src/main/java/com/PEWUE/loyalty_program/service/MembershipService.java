@@ -1,18 +1,14 @@
 package com.PEWUE.loyalty_program.service;
 
-import com.PEWUE.loyalty_program.dto.UserDTO;
 import com.PEWUE.loyalty_program.exception.ProgramNotFoundException;
 import com.PEWUE.loyalty_program.exception.UserAlreadyMemberOfProgramException;
 import com.PEWUE.loyalty_program.exception.UserNotFoundException;
-import com.PEWUE.loyalty_program.mapper.MembershipMapper;
-import com.PEWUE.loyalty_program.mapper.UserMapper;
 import com.PEWUE.loyalty_program.model.LoyaltyProgram;
 import com.PEWUE.loyalty_program.model.Membership;
 import com.PEWUE.loyalty_program.model.User;
 import com.PEWUE.loyalty_program.repository.LoyaltyProgramRepository;
 import com.PEWUE.loyalty_program.repository.MembershipRepository;
 import com.PEWUE.loyalty_program.repository.UserRepository;
-import com.PEWUE.loyalty_program.util.CycleAvoidingMappingContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -26,10 +22,8 @@ public class MembershipService {
     private final MembershipRepository membershipRepository;
     private final UserRepository userRepository;
     private final LoyaltyProgramRepository loyaltyProgramRepository;
-    private final UserMapper userMapper;
-    private final CycleAvoidingMappingContext context;
 
-    public UserDTO addMembership(Long userId, Long programId) {
+    public User addMembership(Long userId, Long programId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User with id: " + userId + " not found"));
         LoyaltyProgram loyaltyProgram = loyaltyProgramRepository.findById(programId)
@@ -62,7 +56,7 @@ public class MembershipService {
         User updatedUser = userRepository.updateUser(user, user);
         loyaltyProgramRepository.updateProgram(loyaltyProgram, loyaltyProgram);
 
-        return userMapper.toDto(updatedUser, context);
+        return updatedUser;
     }
 
     private boolean isUserAlreadyMemberOfProgram(User user, Long programId) {

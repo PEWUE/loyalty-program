@@ -24,13 +24,11 @@ public class LoyaltyProgramService {
     private final LoyaltyProgramMapper loyaltyProgramMapper;
     private final CycleAvoidingMappingContext context;
 
-    public List<LoyaltyProgramDTO> getAllPrograms() {
-        return loyaltyProgramRepository.findAll().stream()
-                .map(loyaltyProgram -> loyaltyProgramMapper.toDto(loyaltyProgram, context))
-                .toList();
+    public List<LoyaltyProgram> getAllPrograms() {
+        return loyaltyProgramRepository.findAll();
     }
 
-    public LoyaltyProgramDTO createProgram(LoyaltyProgramCreateDTO dto) {
+    public LoyaltyProgram createProgram(LoyaltyProgramCreateDTO dto) {
         if (dto.getName() == null || dto.getStartDate() == null) {
             throw new IllegalArgumentException("Fields should not be null");
         }
@@ -42,17 +40,15 @@ public class LoyaltyProgramService {
         }
 
         LoyaltyProgram loyaltyProgram = loyaltyProgramMapper.toEntity(dto, context);
-        LoyaltyProgram savedProgram = loyaltyProgramRepository.save(loyaltyProgram);
-        return loyaltyProgramMapper.toDto(savedProgram, context);
+        return loyaltyProgramRepository.save(loyaltyProgram);
     }
 
-    public LoyaltyProgramDTO getProgramById(Long id) {
-        LoyaltyProgram existingProgram = loyaltyProgramRepository.findById(id)
+    public LoyaltyProgram getProgramById(Long id) {
+        return loyaltyProgramRepository.findById(id)
                 .orElseThrow(() -> new ProgramNotFoundException("Program with id: " + id + " not found"));
-        return loyaltyProgramMapper.toDto(existingProgram, context);
     }
 
-    public LoyaltyProgramDTO updateProgram(Long id, LoyaltyProgramUpdateDTO dto) {
+    public LoyaltyProgram updateProgram(Long id, LoyaltyProgramUpdateDTO dto) {
         if (dto.getStartDate() == null) {
             throw new IllegalArgumentException("Fields should not be null");
         }
@@ -63,8 +59,7 @@ public class LoyaltyProgramService {
                 .orElseThrow(() -> new ProgramNotFoundException("Program with id: " + id + " not found"));
         existingProgram.setDescription(dto.getDescription());
         existingProgram.setPeriod(Period.builder().startDate(dto.getStartDate()).endDate(dto.getEndDate()).build());
-        LoyaltyProgram savedProgram = loyaltyProgramRepository.save(existingProgram);
-        return loyaltyProgramMapper.toDto(savedProgram, context);
+        return loyaltyProgramRepository.save(existingProgram);
     }
 
     public void deleteProgram(Long id) {
