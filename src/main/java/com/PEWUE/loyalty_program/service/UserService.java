@@ -29,6 +29,11 @@ public class UserService {
     }
 
     public UserDTO registerUser(UserRegistrationDTO userRegistrationDTO) {
+        if (userRegistrationDTO.getFirstName() == null ||
+                userRegistrationDTO.getLastName() == null ||
+                userRegistrationDTO.getEmail() == null) {
+            throw new IllegalArgumentException("Fields should not be null");
+        }
         if (userRepository.findByEmail(userRegistrationDTO.getEmail()).isPresent()) {
             throw new UserAlreadyExistsException("User with email " + userRegistrationDTO.getEmail() + " already exists");
         }
@@ -45,6 +50,11 @@ public class UserService {
     }
 
     public UserDTO updateUser(Long id, UserUpdateDTO userUpdateDTO) {
+        if (userUpdateDTO.getFirstName() == null ||
+                userUpdateDTO.getLastName() == null ||
+                userUpdateDTO.getEmail() == null) {
+            throw new IllegalArgumentException("Fields should not be null");
+        }
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User with id: " + id + " not found"));
 

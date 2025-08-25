@@ -1,4 +1,4 @@
-package com.PEWUE.loyalty_program.service;
-
-public class CampaignService {
-}
+//package com.PEWUE.loyalty_program.service;
+//
+//public class CampaignService {
+//}

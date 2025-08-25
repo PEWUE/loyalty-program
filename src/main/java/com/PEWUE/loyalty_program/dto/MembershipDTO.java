@@ -16,9 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 public class MembershipDTO {
     private Long id;
-    private UserDTO userDTO;
-    private LoyaltyProgramDTO loyaltyProgramDTO;
+    private UserDTO user;
+    private LoyaltyProgramDTO loyaltyProgram;
     private LocalDateTime joinDate;
     private Long pointsBalance;
-    private List<PointsTransactionDTO> transactionDTOS;
+    private List<PointsTransactionDTO> transaction;
 }
