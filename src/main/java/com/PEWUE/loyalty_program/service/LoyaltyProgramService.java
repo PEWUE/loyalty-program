@@ -21,13 +21,13 @@ import java.util.List;
 public class LoyaltyProgramService {
     private final LoyaltyProgramRepository loyaltyProgramRepository;
     private final LoyaltyProgramMapper loyaltyProgramMapper;
-    private final CycleAvoidingMappingContext context;
 
     public List<LoyaltyProgram> getAllPrograms() {
         return loyaltyProgramRepository.findAll();
     }
 
     public LoyaltyProgram createProgram(LoyaltyProgramCreateDTO dto) {
+        CycleAvoidingMappingContext context = new CycleAvoidingMappingContext();
         if (dto.getName() == null || dto.getStartDate() == null) {
             throw new IllegalArgumentException("Fields should not be null");
         }

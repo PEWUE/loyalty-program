@@ -19,13 +19,13 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final CycleAvoidingMappingContext context;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     public User registerUser(UserRegistrationDTO userRegistrationDTO) {
+        CycleAvoidingMappingContext context = new CycleAvoidingMappingContext();
         if (userRegistrationDTO.getFirstName() == null ||
                 userRegistrationDTO.getLastName() == null ||
                 userRegistrationDTO.getEmail() == null) {

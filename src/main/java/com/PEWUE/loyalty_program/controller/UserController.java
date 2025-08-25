@@ -22,10 +22,10 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
-    private final CycleAvoidingMappingContext context;
 
     @GetMapping
     public List<UserDTO> getUsers() {
+        CycleAvoidingMappingContext context = new CycleAvoidingMappingContext();
         return userService.getAllUsers().stream()
                 .map(user -> userMapper.toDto(user, context))
                 .toList();
@@ -34,6 +34,7 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO addUser(@RequestBody UserRegistrationDTO userDTO) {
+        CycleAvoidingMappingContext context = new CycleAvoidingMappingContext();
         return userMapper.toDto(userService.registerUser(userDTO), context);
     }
 }

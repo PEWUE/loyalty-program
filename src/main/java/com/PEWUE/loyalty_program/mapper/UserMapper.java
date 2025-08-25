@@ -7,9 +7,8 @@ import com.PEWUE.loyalty_program.model.User;
 import com.PEWUE.loyalty_program.util.CycleAvoidingMappingContext;
 import org.mapstruct.Context;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = MembershipMapper.class)
+@Mapper(componentModel = "spring")
 public interface UserMapper {
     UserDTO toDto(User user, @Context CycleAvoidingMappingContext context);
     User toEntity(UserDTO dto, @Context CycleAvoidingMappingContext context);
